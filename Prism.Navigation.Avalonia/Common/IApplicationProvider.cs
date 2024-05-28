@@ -1,4 +1,5 @@
-﻿using Prism.Navigation.Avalonia.Xaml;
+﻿using Pipopolam.Avalonia.NavigationPages;
+using Prism.Navigation.Avalonia.Xaml;
 
 namespace Prism.Common
 {

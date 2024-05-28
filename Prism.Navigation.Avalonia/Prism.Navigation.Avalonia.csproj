@@ -19,5 +19,9 @@
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
     </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="../Pipopolam.Avalonia.NavigationPages/Pipopolam.Avalonia.NavigationPages.csproj" />
+    </ItemGroup>
 
 </Project>

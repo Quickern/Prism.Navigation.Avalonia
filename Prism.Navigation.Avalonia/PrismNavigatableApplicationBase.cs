@@ -1,4 +1,5 @@
 using Avalonia;
+using Pipopolam.Avalonia.NavigationPages;
 using Prism.Common;
 using Prism.Extensions;
 using Prism.Navigation.Avalonia.Xaml;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Avalonia;
+using Pipopolam.Avalonia.NavigationPages;
 using Prism.Common;
 using Prism.Navigation.Avalonia.Xaml;
 

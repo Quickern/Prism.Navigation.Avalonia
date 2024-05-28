@@ -1,10 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
+using Pipopolam.Avalonia.NavigationPages;
 using Prism.Common;
-using Prism.Ioc;
-using Prism.Navigation.Avalonia.Xaml;
 
 namespace Prism.Navigation.Xaml
 {

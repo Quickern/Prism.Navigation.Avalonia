@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Avalonia;
+﻿using Avalonia;
+using Pipopolam.Avalonia.NavigationPages;
 // using Prism.Behaviors;
 using Prism.Common;
-using Prism.Ioc;
-using Prism.Navigation.Avalonia.Xaml;
 
 namespace Prism.Navigation
 {

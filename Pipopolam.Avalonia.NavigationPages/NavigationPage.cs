@@ -1,26 +1,26 @@
-using Avalonia.Controls;
+namespace Pipopolam.Avalonia.NavigationPages;
 
-namespace Prism.Navigation.Avalonia.Xaml;
-
-public class Page : UserControl
+public class NavigationPage : Page
 {
-    public INavigation Navigation { get; }
+    public Page? RootPage { get; set; }
+    public Page? CurrentPage => Content as Page;
 
-    public Page()
+    public NavigationPage()
     {
-        Navigation = new InternalNavigation(this);
+        Navigation = new NavigationImpl(this);
     }
     
-    private class InternalNavigation : INavigation
+    private class NavigationImpl : INavigation
     {
-        private Page _page;
+        private readonly NavigationPage _page;
+        
         private readonly List<Page> _modalStack = new List<Page>();
         private readonly List<Page> _navigationStack = new List<Page>();
 
         public IReadOnlyList<Page> ModalStack => _modalStack;
         public IReadOnlyList<Page> NavigationStack => _navigationStack;
 
-        public InternalNavigation(Page page) => _page = page;
+        public NavigationImpl(NavigationPage page) => _page = page;
         
         public void InsertPageBefore(Page page, Page before)
         {
@@ -84,44 +84,3 @@ public class Page : UserControl
         }
     }
 }
-
-public class ContentPage : Page
-{
-}
-
-public interface INavigation
-{
-    IReadOnlyList<Page> ModalStack { get; }
-
-    IReadOnlyList<Page> NavigationStack { get; }
-
-    void InsertPageBefore(Page page, Page before);
-    Task<Page> PopAsync();
-    Task<Page> PopAsync(bool animated);
-    Task<Page> PopModalAsync();
-    Task<Page> PopModalAsync(bool animated);
-    Task PopToRootAsync();
-    Task PopToRootAsync(bool animated);
-
-    Task PushAsync(Page page);
-
-    Task PushAsync(Page page, bool animated);
-    Task PushModalAsync(Page page);
-    Task PushModalAsync(Page page, bool animated);
-
-    void RemovePage(Page page);
-}
-
-public class NavigationPage : Page
-{
-    public Page RootPage { get; set; }
-    public Page CurrentPage { get; set; }
-}
-
-// public class FlyoutPage : Page
-// {
-//     public Page Flyout { get; set; }
-//     public Page Detail { get; set; }
-// }
-// public class TabbedPage : Page { }
-// public class CarouselPage : Page { }

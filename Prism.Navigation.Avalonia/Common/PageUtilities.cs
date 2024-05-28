@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Reflection;
-using System.Threading.Tasks;
 using Avalonia;
-using Prism.Mvvm;
-using Prism.Navigation;
-using Prism.Navigation.Avalonia.Xaml;
+using Pipopolam.Avalonia.NavigationPages;
 
 namespace Prism.Common
 {
