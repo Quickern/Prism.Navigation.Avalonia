@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Controls;
 using Pipopolam.Avalonia.NavigationPages;
 using Prism.Common;
 using Prism.Extensions;
@@ -8,6 +9,24 @@ namespace Prism;
 
 public abstract class PrismNavigatableApplicationBase : PrismApplicationBase
 {
+    public static readonly StyledProperty<string> TitleProperty =
+        AvaloniaProperty.Register<PrismNavigatableApplicationBase, string>(nameof(Title), "Avalonia");
+
+    public string Title
+    {
+        get => GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
+    
+    public static readonly StyledProperty<WindowIcon> IconProperty =
+        AvaloniaProperty.Register<Window, WindowIcon>(nameof(Icon));
+
+    public WindowIcon Icon
+    {
+        get => GetValue(IconProperty);
+        set => SetValue(IconProperty, value);
+    }
+    
     public new static PrismNavigatableApplicationBase Current => (PrismNavigatableApplicationBase) Application.Current;
     
     public Page MainPage
@@ -19,6 +38,20 @@ public abstract class PrismNavigatableApplicationBase : PrismApplicationBase
     public const string NavigationServiceName = "PageNavigationService";
     
     protected INavigationService NavigationService { get; set; }
+
+    static PrismNavigatableApplicationBase()
+    {
+        TitleProperty.Changed.AddClassHandler<PrismNavigatableApplicationBase>((s, e) =>
+        {
+            if (s.MainWindow != null)
+                ((MainWindow)s.MainWindow).Title = (string)e.NewValue;
+        });
+        IconProperty.Changed.AddClassHandler<PrismNavigatableApplicationBase>((s, e) =>
+        {
+            if (s.MainWindow != null)
+                ((MainWindow)s.MainWindow).Icon = (WindowIcon)e.NewValue;
+        });
+    }
     
     protected override void RegisterRequiredTypes(IContainerRegistry containerRegistry)
     {
@@ -72,6 +105,8 @@ public abstract class PrismNavigatableApplicationBase : PrismApplicationBase
     protected override AvaloniaObject CreateShell()
     {
         MainWindow window = Container.Resolve<MainWindow>();
+        window.Title = Title;
+        window.Icon = Icon;
         NavigationService = CreateNavigationService(window.MainPage);
         return window;
     }
